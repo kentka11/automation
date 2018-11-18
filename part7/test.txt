@@ -1,0 +1,18 @@
+>>> import datetime
+>>> now = datetime.datetime.now()
+>>> now.strftime("%Y/%m/%d %H:%M:%S")
+'2012/01/01 20:29:39'
+もしくは、新しい形式のformat関数を使ってもできる。
+
+>>> "{0:%Y-%m-%d %H:%M:%S}".format(now)
+'2012-10-07 08:15:03'
+その逆。書式化された日付文字列 → datetime
+>>> import datetime
+>>> datetime.datetime.strptime('2012/01/01 20:29:39', "%Y/%m/%d %H:%M:%S")
+>>> datetime.datetime(2012, 1, 1, 20, 29, 39)
+標準ライブラリではdatetimeモジュールのstrptimeが利用できるが、曜日や月の名称などでロケールに依存することがある。（Mon, 月など）
+サードパーティ製モジュールのdatetutilを使って変換することもできる。
+
+>>> import dateutil.parser
+>>> dateutil.parser.parse('Tue Apr 10 04:54:42 JST 2007')
+datetime.datetime(2007, 4, 10, 4, 54, 42, tzinfo=tzlocal())
