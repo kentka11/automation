@@ -25,15 +25,15 @@ capitals = {'北海道': '札幌市', '青森県': '青森市', '岩手県': '�
 
 for quiz_num in range(35):
   #問題集・解答集のファイルを作成する
-  quiz_file = open("quiz{}.txt".format(quiz_num + 1), "w")
-  answ_file = open("answ{}.txt".format(quiz_num + 1), "w")
+  quiz_file = open("./output/quiz{}.txt".format(quiz_num + 1), "w")
+  answ_file = open("./output/answ{}.txt".format(quiz_num + 1), "w")
 
   #問題集のヘッダーを書く
   quiz_file.write("名前:\n日付:\n学期:\n")
   quiz_file.write("県庁所在地クイズ\n")
   quiz_file.write("\n\n")
   
-  answ_file.write("問題の解答")
+  answ_file.write("問題の解答\n")
 
   #等道府県の順番をシャッフルする
   prefectures = list(capitals.keys())
@@ -49,12 +49,12 @@ for quiz_num in range(35):
     random.shuffle(answer_options)
 
     #問題文と回答選択肢を問題ファイルに書く
-    quiz_file.write("\n\n{}. {}の県庁所在地を選択肢からお選びください。\n".format(quiz_num + 1, prefectures[question_num]))
+    quiz_file.write("\n\n{}. {}の県庁所在地を選択肢からお選びください。\n".format(question_num + 1, prefectures[question_num]))
     for i in range(len(answer_options)):
       quiz_file.write("({}) {}\n".format('ABCD'[i], answer_options[i]))
 
-      #答えの選択肢を解答ファイルに書く
-      answ_file.write("{}. ({})\n".format(quiz_num + 1, 'ABCD'[answer_options.index(correct_answer)]))
+    #答えの選択肢を解答ファイルに書く
+    answ_file.write("{}. ({})\n".format(question_num + 1, 'ABCD'[answer_options.index(correct_answer)]))
     
   quiz_file.close()
   answ_file.close()
